@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+               <div class="nav-wrapper">
+                 <div class="left-side">
+                     <div class="nav-link-wrapper">
+                       <a href="frontpage.html">Home</a>
+                     </div>
+
+                     <div class="nav-link-wrapper">
+                       <a href="about.html">About</a>
+                    </div>
+
+                 </div>
+
+                 <div class="right-side">
+                     <div class="brand">
+                       <div> JAMIE PLUNKETT</div>
+                     </div>
+
+                 </div>
+
+               </div>
+            <div class="content-wrapper">
+                 <div class="portfolio-items-wrapper">
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/sales.jpg)"> </div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                              <img src="Logo/gift.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                 Sales Department,
+                                 dedicated to great customer service.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/accounts.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/ebonyivory.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                 Accounts department, keeping checks and balances in line.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/humanresources.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/heart.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                Human Resources, putting the best teams together to work, while creating
+                                a wonderful work environment.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/Inventory.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/whale.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                 Inventory department, Monitoring stock levels.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/purchasing.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/square.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                Purchasing Department, sourcing high quality parts and vehicles.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/reports.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/reportslogo.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                Management Reports, giving real time information on the progress of the organization.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/shopfloor.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/shark.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                 Shop Floor, This is where we get work done on your vehicle.
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+                     <div class="portfolio-item-wrapper">
+                         <div class="portfolio-img-background" style="background-image:url(images/staffnoticeboard.jpg)"></div>
+                         <div class="img-text-wrapper">
+                             <div class="logo-wrapper">
+                                 <img src="Logo/robots.jpg" alt="">
+                             </div>
+
+                             <div class="subtitle">
+                                 Notice Board, here we give our staff information on what`s happening at the company, as well
+                                 remind staff of key dates.
+
+                             </div>
+
+
+
+                         </div>
+
+                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 </div>
+
+
+            </div>
+
+
+
+    </div>
+
+
+</body>
+<script>
+const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper')
+
+portfolioItems.forEach(portfolioItem => {
+portfolioItem.addEventListener('mouseover',()=> {
+portfolioItem.childNodes[1].classList.add('img-darken');
+
+})
+portfolioItem.addEventListener('mouseout',()=> {
+portfolioItem.childNodes[1].classList.remove('img-darken');
+
+
+
+
+}) })
+
+</script>
+</html>
