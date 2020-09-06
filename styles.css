@@ -106,10 +106,11 @@ body {
 .two-column-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
 }
 
 .profile-image-wrapper img {
-  width: 50%;
+  width: 80%;
 }
 
 .profile-content-wrapper {
@@ -119,6 +120,11 @@ body {
 .profile-content-wrapper h1 {
   color: lightseagreen;
 }
+
+.profile-content-wrapper p {
+  color:yellow;
+}
+
 
 /* Login Page styles */
 .login-page {
