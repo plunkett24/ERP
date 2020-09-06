@@ -2,7 +2,7 @@
 body {
   font-family: "Lato", sans-serif;
   margin: 0px;
-  background-image: url(images/securitybackground.jpg);
+  background-image: baige;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -121,9 +121,7 @@ body {
   color: lightseagreen;
 }
 
-.profile-content-wrapper p {
-  color:yellow;
-}
+
 
 
 /* Login Page styles */
