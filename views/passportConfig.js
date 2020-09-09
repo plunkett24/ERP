@@ -13,7 +13,7 @@ function initialize(passport) {
 				}
 				console.log(results.row);
 
-				if (results.row.length > 0) {
+				if (results.rows.length > 0) {
 					const user = results.rows[0];
 
 					bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -44,7 +44,7 @@ function initialize(passport) {
 	);
 	passport.serializeUser((user, done) => done(null, user.id));
 
-	passport.deserializUser((id, done) => {
+	passport.deserializeUser((id, done) => {
 		pool.query(`SELECT * FROM users WHERE id=$1`, [id], (err, results) => {
 			if (err) {
 				throw err;
@@ -53,3 +53,5 @@ function initialize(passport) {
 		});
 	});
 }
+
+module.exports = initialize;
