@@ -1,5 +1,5 @@
-const express = require("express");
-const app = express();
+const express = require("express"); //Brings in the express library.
+const app = express(); //allows us to have access to express library functions
 const { pool } = require("./views/dbConfig");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
