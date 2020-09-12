@@ -14,13 +14,14 @@
 
 		<ul>
 			<% if(messages.success_msg) { %>
-			<!--login form design   -->
+			<!--login form design, additional code to accept flash message-->
 			<li><%= messages.success_msg %></li>
 			<% } %>
 		</ul>
 
 		<ul>
 			<% if(messages.error ){ %>
+			<!--passport will store these -->
 			<li><%= messages.error %></li>
 			<% } %>
 		</ul>

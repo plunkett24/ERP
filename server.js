@@ -2,13 +2,14 @@ const express = require("express"); //Brings in the express library.
 const app = express(); //allows us to have access to express library functions
 const { pool } = require("./views/dbConfig"); //access to pg, created in dbConfig file
 const bcrypt = require("bcrypt"); //allows us to hash passwords
-const session = require("express-session");
-const flash = require("express-flash");
-const passport = require("passport");
+const session = require("express-session"); //store user session, track what users do on the program, stores info for a specific client
+const flash = require("express-flash"); //ability to display flash messages
+const passport = require("passport"); //allows us to store logged in users session details into the browser cookie,
+//so that they can be authenticated user
 
 const initializePassport = require("./views/passportConfig");
 
-initializePassport(passport);
+initializePassport(passport); //initializing passport we required at the top of the page.
 
 const PORT = process.env.PORT || 4000; //setting up environment and port to be used
 
@@ -18,17 +19,17 @@ app.use(express.urlencoded({ extended: false })); //middleware sends details fro
 
 app.use(
 	session({
-		secret: "secret",
+		secret: "secret", //key we want to keep secret, encrypt ans store info in our session
 
-		resave: false,
+		resave: false, //should we resave session variables if nothing changes
 
-		saveUninitialized: false,
+		saveUninitialized: false, //should we save session variables if nothing is placed in session
 	})
 );
-app.use(passport.initialize());
+app.use(passport.initialize()); // we want app to use passport
 app.use(passport.session());
 
-app.use(flash());
+app.use(flash()); // to display our flash messages
 
 app.get("/", (req, res) => {
 	//setting up page and link to specific file.
@@ -48,9 +49,10 @@ app.get("/users/login", checkAuthenticated, (req, res) => {
 app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
 	//setting up page, linking it to specs file
 	res.render("dashboard", { user: req.user.name }); //setting up user from ejs code in dashboard file.
-});
+}); //taking user from database
 
 app.get("/users/logout", (req, res) => {
+	// log out messages and flash and passport functions
 	req.logOut();
 	req.flash("success_msg", "You have logged out");
 	res.redirect("/users/login");
@@ -94,7 +96,7 @@ app.post("/users/register", async (req, res) => {
 					throw err;
 				}
 
-				console.log(results.rows);
+				console.log(results.rows); //shows list of registered users in database
 				if (results.rows.length > 0) {
 					errors.push({ message: "Email already registered" });
 					res.render("register", { errors });
@@ -103,7 +105,7 @@ app.post("/users/register", async (req, res) => {
 						`INSERT INTO users (name, email, password)
 					     VALUES ($1, $2, $3)
 						 RETURNING id, password`,
-						[name, email, hashedPassword],
+						[name, email, hashedPassword], // replace 1, 2, 3 with these values
 						(err, results) => {
 							if (err) {
 								throw err;
@@ -122,17 +124,18 @@ app.post("/users/register", async (req, res) => {
 app.post(
 	"/users/login",
 	passport.authenticate("local", {
-		successRedirect: "/users/dashboard",
-		failureRedirect: "/users/login",
-		failureFlash: true,
+		successRedirect: "/users/dashboard", //if login successfull
+		failureRedirect: "/users/login", // if login fail
+		failureFlash: true, // failure flash message will appear
 	})
 );
 
 function checkAuthenticated(req, res, next) {
+	//checks if user is authenticated or passport function
 	if (req.isAuthenticated()) {
 		return res.redirect("/users/dashboard");
 	}
-	next();
+	next(); // move on to next middleware
 }
 function checkNotAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
