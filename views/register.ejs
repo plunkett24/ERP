@@ -2,59 +2,69 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
 		/>
+		<link rel="stylesheet" href="/css/styles.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<title>Document</title>
 	</head>
 	<body>
-		<h1>Register</h1>
-		<!--when errors comeback to register show error message on the screen   -->
-		<ul>
-			<% if(typeof errors != 'undefined') { %> <% errors.forEach(error=>{ %>
-			<!--handle each error-->
-			<li><%=error.message %></li>
-			<% }) %> <% } %>
-		</ul>
+		<div class="registerp">
+			<h1>Register</h1>
+			<!--when errors comeback to register show error message on the screen   -->
+			<ul>
+				<% if(typeof errors != 'undefined') { %> <% errors.forEach(error=>{ %>
+				<!--handle each error-->
+				<li><%=error.message %></li>
+				<% }) %> <% } %>
+			</ul>
 
-		<form action="/users/register" method="POST">
-			<!--register form design   -->
-			<div>
-				<input type="text" id="name" name="name" placeholder="Name" required />
-			</div>
-			<div>
-				<input
-					type="email"
-					id="email"
-					name="email"
-					placeholder="Email"
-					required
-				/>
-			</div>
-			<div>
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="password"
-					required
-				/>
-			</div>
-			<div>
-				<input
-					type="password"
-					id="password2"
-					name="password2"
-					placeholder="Confirm password"
-					required
-				/>
-			</div>
-			<div>
-				<input type="submit" value="Register" />
-			</div>
-			<a href="/users/login">Already registered? Login here</a>
-		</form>
+			<form action="/users/register" method="POST">
+				<!--register form design   -->
+				<div>
+					<input
+						type="text"
+						id="name"
+						name="name"
+						placeholder="Name"
+						required
+					/>
+				</div>
+				<div>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						placeholder="Email"
+						required
+					/>
+				</div>
+				<div>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="password"
+						required
+					/>
+				</div>
+				<div>
+					<input
+						type="password"
+						id="password2"
+						name="password2"
+						placeholder="Confirm password"
+						required
+					/>
+				</div>
+				<div>
+					<input type="submit" value="Register" />
+				</div>
+				<a href="/users/login">Already registered? Login here</a>
+			</form>
+		</div>
 	</body>
 </html>

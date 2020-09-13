@@ -7,6 +7,12 @@ const flash = require("express-flash"); //ability to display flash messages
 const passport = require("passport"); //allows us to store logged in users session details into the browser cookie,
 //so that they can be authenticated user
 
+//get other files on my machine...logos and images in other folders
+app.use(express.static("public"));
+app.use("/css", express.static(__dirname + "public/css"));
+app.use("/Logo", express.static(__dirname + "public/Logo"));
+app.use("/images", express.static(__dirname + "public/images"));
+
 const initializePassport = require("./views/passportConfig");
 
 initializePassport(passport); //initializing passport we required at the top of the page.
@@ -19,7 +25,7 @@ app.use(express.urlencoded({ extended: false })); //middleware sends details fro
 
 app.use(
 	session({
-		secret: "secret", //key we want to keep secret, encrypt ans store info in our session
+		secret: "secret", //key we want to keep secret, encrypt and store info in our session
 
 		resave: false, //should we resave session variables if nothing changes
 
@@ -50,6 +56,11 @@ app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
 	//setting up page, linking it to specs file
 	res.render("dashboard", { user: req.user.name }); //setting up user from ejs code in dashboard file.
 }); //taking user from database
+
+app.get("/users/about", (req, res) => {
+	//setting up page and link to specific file.
+	res.render("about");
+});
 
 app.get("/users/logout", (req, res) => {
 	// log out messages and flash and passport functions

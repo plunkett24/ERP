@@ -2,53 +2,57 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
 		/>
+		<link rel="stylesheet" href="/css/styles.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<title>Login</title>
 	</head>
 	<body>
-		<h1>Login</h1>
+		<div class="loginp">
+			<h1>Login</h1>
 
-		<ul>
-			<% if(messages.success_msg) { %>
-			<!--login form design, additional code to accept flash message-->
-			<li><%= messages.success_msg %></li>
-			<% } %>
-		</ul>
+			<ul>
+				<% if(messages.success_msg) { %>
+				<!--login form design, additional code to accept flash message-->
+				<li><%= messages.success_msg %></li>
+				<% } %>
+			</ul>
 
-		<ul>
-			<% if(messages.error ){ %>
-			<!--passport will store these -->
-			<li><%= messages.error %></li>
-			<% } %>
-		</ul>
+			<ul>
+				<% if(messages.error ){ %>
+				<!--passport will store these -->
+				<li><%= messages.error %></li>
+				<% } %>
+			</ul>
 
-		<form action="/users/login" method="POST">
-			<div>
-				<input
-					type="email"
-					id="email"
-					name="email"
-					placeholder="Email"
-					required
-				/>
-			</div>
-			<div>
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="password"
-					required
-				/>
-			</div>
-			<div>
-				<input type="submit" value="Login" />
-			</div>
-			<a href="/users/register">Register</a>
-		</form>
+			<form action="/users/login" method="POST">
+				<div>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						placeholder="Email"
+						required
+					/>
+				</div>
+				<div>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="password"
+						required
+					/>
+				</div>
+				<div>
+					<input type="submit" value="Login" />
+				</div>
+				<a href="/users/register">Register</a>
+			</form>
+		</div>
 	</body>
 </html>
