@@ -57,5 +57,4 @@ function initialize(passport) {
 		});
 	});
 }
-
 module.exports = initialize; //to use function in server

@@ -61,6 +61,10 @@ app.get("/users/about", (req, res) => {
 	//setting up page and link to specific file.
 	res.render("about");
 });
+app.get("/users/sales", checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render("sales");
+});
 
 app.get("/users/logout", (req, res) => {
 	// log out messages and flash and passport functions
@@ -140,6 +144,117 @@ app.post(
 		failureFlash: true, // failure flash message will appear
 	})
 );
+
+//Sales page
+app.post("/users/sales", async (req, res) => {
+	let {
+		firstname,
+		lastname,
+		country,
+		city,
+		province,
+		postalcode,
+		email,
+		age,
+		date,
+		gender,
+		request,
+		file,
+		phone,
+		url,
+	} = req.body; //get info from our sales form send it to server
+
+	console.log({
+		firstname,
+		lastname, // log login details to console
+		country,
+		city,
+		province,
+		postalcode,
+		email,
+		age,
+		date,
+		gender,
+		request,
+		file,
+		phone,
+		url,
+		requeststatus,
+	});
+	let errors = []; // any errors will be pushed to this array
+
+	if (
+		!firstname ||
+		!lastname ||
+		!country ||
+		!city ||
+		!province ||
+		!postalcode ||
+		!email ||
+		!age ||
+		!date ||
+		!gender ||
+		!request ||
+		!phone ||
+		!url
+	) {
+		// error validations for sales info
+		errors.push({ message: "Please enter all fields" });
+	}
+
+	if (errors.length > 0) {
+		// if errors exist run the register file and show errors.
+		res.render("sales", { errors });
+	} /*else {*/
+
+	pool.query(
+		"SELECT * FROM customers WHERE email = $1", //check to see if customer already exists
+		[email], // in our database
+		(err, results) => {
+			if (err) {
+				throw err;
+			}
+
+			console.log(results.rows); //shows list of registered customers in database
+			if (results.rows.length > 0) {
+				errors.push({ message: "Customer already exists" });
+				res.render("sales", { errors });
+			} else {
+				pool.query(
+					`INSERT INTO customers (firstname, lastname, country, city, province, postalcode, email, age, date,
+						gender,request, file, phone, url, requeststatus)
+					     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+						 RETURNING id`,
+					[
+						firstname,
+						lastname,
+						country,
+						city,
+						province,
+						postalcode,
+						email,
+						age,
+						date,
+						gender,
+						request,
+						file,
+						phone,
+						url,
+						requeststatus,
+					], // replace 1, 2, 3 with these values
+					(err, results) => {
+						if (err) {
+							throw err;
+						}
+						console.log(results.rows);
+						req.flash("success_msg", "You are now registered.");
+						res.redirect("/users/sales");
+					}
+				);
+			}
+		}
+	);
+});
 
 function checkAuthenticated(req, res, next) {
 	//checks if user is authenticated or passport function

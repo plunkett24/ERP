@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" 
+    />
+		<link rel="stylesheet" href="/css/styles.css" />   
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sales</title>
+    
+    </head>
+	<body class="salespage">
+		
+		<div class="container">
+			<div class="nav-wrapper">
+				<div class="left-side">
+					<div class="nav-link-wrapper">
+						<a href="/users/dashboard">dashboard</a>
+					</div>
+
+					<div class="nav-link-wrapper">
+						<a href="/users/sales">search customer</a>
+					</div>
+			
+
+				<div class="nav-link-wrapper">
+                    <a href="/users/sales">new customer</a>
+				</div>
+      </div>
+      
+      
+      </div>
+			
+            <form class=a action="/users/sales" method="POST">
+                <div>
+                  <label for="firstname">First Name</label>
+                  <input type="text" name="firstname" id="firstname" placeholder="firstname" required>
+              </div>
+              <div>
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" id="lastname" placeholder="lastname" required>
+            </div>
+            <div>
+                <label for="country">Country</label>
+                <input type="text" country="country" id="country" placeholder="country" required>
+            </div>
+            <div>
+                <label for="city">City</label>
+                <input type="text" city="city" id="city" placeholder="city" required>
+            </div>
+            <div>
+                <label for="province">Province</label>
+                <input type="text" province="province" id="province" placeholder="province" required>
+            </div>
+            <div>
+                <label for="postalcode">Postal Code</label>
+                <input type="text" province="postalcode" id="postalcode" placeholder="postalcode" required>
+            </div>
+            
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder= "email" required>
+              </div>
+              <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" min="1" max="200" step="1" placeholder="age" required>
+              </div>
+              <div>
+                <label for="date">Birthdate</label>
+                <input type="date" name="date" id="date" min="1900-06-10" placeholder="birthdate" required>
+              </div>
+                          
+            
+            <!---  <div>
+                  <label for="male">Male</label>
+                  <input type="radio" name="gender" id="male" value="male">
+                </div>
+                <div>
+                  <label for="female">Female</label>
+                  <input type="radio" name="gender" id="female" value="female">
+                </div>
+                <div>
+                    <label for="non binary">Non-Binary</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                  </div> -->
+                <div>
+              <select name= "gender">
+                <option value="male">MALE</option>
+                <option value="female">FEMALE</option>
+                <option value="nonibinary">NON-BINARY</option> 
+              
+              </select>
+
+                </div>
+           
+              
+              <div>
+                <label for="request">Request</label>
+                <textarea id="request" name="request" placeholder="Request"></textarea  required>
+              </div>
+              
+              <div>
+                <label for="file">File</label>
+                <input id="file" type="file" name="file">
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input type="tel" name="phone" id="phone" placeholder="phonenumber" required>
+              </div>
+              <div>
+                <label for="url">URL</label>
+                <input type="url" name="url" id="url" placeholder="url" required>
+              </div>
+              <div>
+                <select name= "requeststatus">
+                  <option value="start">start</option>
+                  <option value="in-process">in-process</option>
+                  <option value="completed">completed</option> 
+                
+                </select>
+  
+                  </div>
+             
+             
+              <button type="reset">Reset</button>
+              <button type="submit">Submit</button>
+            </form>
+                  
+                 
+                  
+                  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        </body>
+	
+</html>
