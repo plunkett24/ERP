@@ -146,6 +146,7 @@ app.post(
 );
 
 //Sales page
+
 app.post("/users/sales", async (req, res) => {
 	let {
 		firstname,
@@ -162,6 +163,7 @@ app.post("/users/sales", async (req, res) => {
 		file,
 		phone,
 		url,
+		requeststatus,
 	} = req.body; //get info from our sales form send it to server
 
 	console.log({
@@ -205,55 +207,55 @@ app.post("/users/sales", async (req, res) => {
 	if (errors.length > 0) {
 		// if errors exist run the register file and show errors.
 		res.render("sales", { errors });
-	} /*else {*/
+	} else {
+		pool.query(
+			"SELECT * FROM customers WHERE email = $1", //check to see if customer already exists
+			[email], // in our database
+			(err, results) => {
+				if (err) {
+					throw err;
+				}
 
-	pool.query(
-		"SELECT * FROM customers WHERE email = $1", //check to see if customer already exists
-		[email], // in our database
-		(err, results) => {
-			if (err) {
-				throw err;
-			}
-
-			console.log(results.rows); //shows list of registered customers in database
-			if (results.rows.length > 0) {
-				errors.push({ message: "Customer already exists" });
-				res.render("sales", { errors });
-			} else {
-				pool.query(
-					`INSERT INTO customers (firstname, lastname, country, city, province, postalcode, email, age, date,
+				console.log(results.rows); //shows list of registered customers in database
+				if (results.rows.length > 0) {
+					errors.push({ message: "Customer already exists" });
+					res.render("sales", { errors });
+				} else {
+					pool.query(
+						`INSERT INTO customers (firstname, lastname, country, city, province, postalcode, email, age, date,
 						gender,request, file, phone, url, requeststatus)
 					     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
 						 RETURNING id`,
-					[
-						firstname,
-						lastname,
-						country,
-						city,
-						province,
-						postalcode,
-						email,
-						age,
-						date,
-						gender,
-						request,
-						file,
-						phone,
-						url,
-						requeststatus,
-					], // replace 1, 2, 3 with these values
-					(err, results) => {
-						if (err) {
-							throw err;
+						[
+							firstname,
+							lastname,
+							country,
+							city,
+							province,
+							postalcode,
+							email,
+							age,
+							date,
+							gender,
+							request,
+							file,
+							phone,
+							url,
+							requeststatus,
+						], // replace 1, 2, 3 with these values
+						(err, results) => {
+							if (err) {
+								throw err;
+							}
+							console.log(results.rows);
+							req.flash("success_msg", "You are now registered.");
+							res.redirect("/users/sales");
 						}
-						console.log(results.rows);
-						req.flash("success_msg", "You are now registered.");
-						res.redirect("/users/sales");
-					}
-				);
+					);
+				}
 			}
-		}
-	);
+		);
+	}
 });
 
 function checkAuthenticated(req, res, next) {
