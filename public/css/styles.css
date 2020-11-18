@@ -1,6 +1,6 @@
 /* Master Styles*/
 body {
-	font-family: "Lato", sans-serif;
+	font-family: 'Lato', sans-serif;
 	margin: 0px;
 	background-image: url(../images/securitybackground.jpg);
 	height: 100vh;
@@ -42,6 +42,10 @@ body {
 }
 /*sales page*/
 .salespage {
+	background-image: url(../images/background2.jpg);
+}
+
+.salespage2 {
 	background-image: url(../images/background2.jpg);
 }
 
@@ -180,7 +184,7 @@ body {
 }
 
 .form input {
-	font-family: "Roboto", sans-serif;
+	font-family: 'Roboto', sans-serif;
 	outline: 1;
 	background: #f2f2f2;
 	width: 100%;
@@ -192,7 +196,7 @@ body {
 }
 
 .form button {
-	font-family: "Roboto", sans-serif;
+	font-family: 'Roboto', sans-serif;
 	text-transform: uppercase;
 	outline: 0;
 	background: #ffff00;
