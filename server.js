@@ -298,6 +298,37 @@ app.post('/users/sales', async (req, res) => {
 		);
 	}
 });
+app.post('/users/edit', function (req, res) {
+	pool.connect(function (err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query(
+			'UPDATE customers SET firstname=$1, lastname=$2, country=$3, city=$4, province=$5, postalcode=$6, email=$7, age=$8, date=$9, gender=$10, request=$11, file=$12, phone=$13, url=$14, requeststatus=$15 WHERE id=$16',
+			[
+				req.body.firstname,
+				req.body.lastname,
+				req.body.country,
+				req.body.city,
+				req.body.province,
+				req.body.postalcode,
+				req.body.email,
+				req.body.age,
+				req.body.date,
+				req.body.gender,
+				req.body.request,
+				req.body.file,
+				req.body.phone,
+				req.body.url,
+				req.body.requeststatus,
+				req.body.id,
+			]
+		);
+
+		done();
+		res.redirect('/users/sales2');
+	});
+});
 app.delete('/users/sales2/delete/:id', function (req, res) {
 	//handle request to delete
 	pool.connect(function (err, client, done) {

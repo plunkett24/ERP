@@ -2,60 +2,60 @@
 
 {<body}
    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#formModal">
-    Add Customer
+      Add Customer
    </button>
    <br />
    
    
     {#customers}
     <div class="jumbotron bg">
-        <h4>{firstname} {lastname} 
+               <h4>{firstname} {lastname} 
         <button class="btn btn-default float-right"data-toggle="collapse" 
-        href="#customers_{id}" aria-expanded="false" aria-controls="customers_{id}">
-        <span class="caret dropdown-toggle" aria-hidden="true"></span>
+             href="#customers_{id}" aria-expanded="false" aria-controls="customers_{id}">
+             <span class="caret dropdown-toggle" aria-hidden="true"></span>
         
         </button></h4>
                <div class="collapse" id="customers_{id}">
-                <br />
-                <p> <strong> Country:</strong>{country}</p>        
-                <p> <strong> City:</strong>{city}</p>
-                <p> <strong> Province:</strong>{province}</p>
-                <p> <strong> Postal Code:</strong>{postalcode}</p>
-                <p> <strong> Email:</strong>{email}</p>
-                <p> <strong> Age:</strong>{age}</p>
-                <p> <strong> Date Of Birth:</strong>{date}</p>
-                <p> <strong> Gender:</strong>{gender}</p>
-                <p> <strong> Request:</strong>{request}</p>
-                <p> <strong> file:</strong>{file}</p>
-                <p> <strong> phone:</strong>{phone}</p>
-                <p> <strong> Url:</strong>{url}</p>
-                <p> <strong> Request Statues:</strong>{requeststatus}</p>
-                <br />
-               <hr/>
-                <button type="button" class="btn btn-success edit-customer"
-                data-toggle="modal" 
-                data-target="#formModal1"
-                data-id="{id}"
-                data-firstname="{firstname}"
-                data-lastname="{lastname}"
-                data-country="{country}"
-                data-city="{city}"
-                data-province="{province}"
-                data-postalcode="{postalcode}"
-                data-email="{email}"
-                data-age="{age}"
-                data-date="{date}"
-                data-gender="{gender}"
-                data-request="{request}"
-                data-file="{file}"
-                data-phone="{phone}"
-                data-url="{url}"
-                data-requeststatus="{requeststatus}"
-                
+                   <br />
+                      <p> <strong> Country:</strong>{country}</p>        
+                      <p> <strong> City:</strong>{city}</p>
+                      <p> <strong> Province:</strong>{province}</p>
+                      <p> <strong> Postal Code:</strong>{postalcode}</p>
+                      <p> <strong> Email:</strong>{email}</p>
+                      <p> <strong> Age:</strong>{age}</p>
+                      <p> <strong> Updated:</strong>{date}</p>
+                      <p> <strong> Gender:</strong>{gender}</p>
+                      <p> <strong> Request:</strong>{request}</p>
+                      <p> <strong> file:</strong>{file}</p>
+                      <p> <strong> phone:</strong>{phone}</p>
+                      <p> <strong> Url:</strong>{url}</p>
+                      <p> <strong> Request Statues:</strong>{requeststatus}</p>
+                  <br />
+                    <hr/>
+                     <button type="button" class="btn btn-success edit-customer"
+                       data-toggle="modal" 
+                       data-target="#formModal1"
+                       data-id="{id}"
+                       data-firstname="{firstname}"
+                       data-lastname="{lastname}"
+                       data-country="{country}"
+                       data-city="{city}"
+                       data-province="{province}"
+                       data-postalcode="{postalcode}"
+                       data-email="{email}"
+                       data-age="{age}"
+                       data-date="{date}"
+                       data-gender="{gender}"
+                       data-request="{request}"
+                       data-file="{file}"
+                       data-phone="{phone}"
+                       data-url="{url}"
+                       data-requeststatus="{requeststatus}"
+                       >Edit
 
                 
-                >Edit</button>
-                <button type="button" class="btn btn-danger delete-customer" data-id="{id}">Delete</button> 
+                      </button>
+                        <button type="button" class="btn btn-danger delete-customer" data-id="{id}">Delete</button> 
               
 
 
@@ -71,13 +71,13 @@
      {/customers}
 <!-- Add Form Modal -->
 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <form method="post" action="/users/sales">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
-      </div>
+       <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form method="post" action="/users/sales">
+                <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+                </div>
       <div class="modal-body">
           <div class="form-group">
      <label>Customer FirstName</label>
@@ -120,8 +120,8 @@
      </div>
 
     <div>
-                <label for="date">Birthdate</label>
-                <input type="date" name="date" id="date" min="1900-06-10" placeholder="birthdate" required>
+                <label for="date">Updated</label>
+                <input type="date" name="date" id="date" min="1900-06-10" placeholder="updatedate" required>
               </div>
      
      
@@ -190,12 +190,13 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- Edit Form Modal -->
-<div class="modal fade" id="formModal1" tabindex="-1" role="dialog" aria-labelledby="editFormModalLabel">
+<div class="modal fade" id="formModal1"  tabindex="-1" role="dialog" aria-labelledby="editFormModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form method="post" action="/users/sales/edit">
+    <form method="post" action="/users/edit">
 <input type="hidden"  id="edit-form-id" name="id" />
 
 
@@ -245,9 +246,9 @@
      </div>
 
     <div>
-                <label for="date">Birthdate</label>
-                <input type="date" name="date" id="date" min="1900-06-10" placeholder="birthdate" required id="edit-form-date" >
-              </div>
+                <label for="date">Updated</label>
+                <input type="date" name="date" id="date" min="1900-06-10" placeholder="updatedate" required id="edit-form-date" />
+              </div> 
      
      
      
@@ -315,6 +316,6 @@
     </div>
   </div>
 </div>
-
+</div>
 
 {/body}
