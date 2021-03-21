@@ -49,6 +49,12 @@ body {
 	background-image: url(../images/background2.jpg);
 }
 
+
+/*purchase page*/
+.purchasepage {
+	background-image: url(../images/background2.jpg);
+}
+
 /*New Registration Page styles */
 .registerp {
 	width: 360px;
@@ -227,6 +233,20 @@ body {
 .form .register-form {
 	display: none;
 }
+
+/*Purchases and beyond*/
+.b {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-auto-rows: minmax(100px, auto);
+	grid-gap: 1em;
+	/*	justify-items: stretch;*/
+	align-items: stretch;
+}
+
+
+
+
 
 /*Sales and beyond*/
 
