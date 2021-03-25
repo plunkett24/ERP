@@ -107,26 +107,6 @@ app.get('/users/sales2', (req, res) => {
 	//res.render('sales2.dust', { header: 'DUST - TEST OK' });
 });
 
-app.get('/users/purchaseorder', checkNotAuthenticated, (req, res) => {
-	//setting up page and link to specific file.
-	res.render('purchaseorder.ejs');
-});
-
-app.get('/users/purchaseorder2', (req, res) => {
-	//PG Connect
-	pool.connect(function (err, client, done) {
-		if (err) {
-			return console.error('error fetching client from pool', err);
-		}
-		client.query('SELECT * FROM purchaseorders', function (err, result) {
-			if (err) {
-				return console.error('error running query', err);
-			}
-			res.render('purchaseorder2.dust', { purchaseorders: result.rows });
-			done();
-		});
-	});
-});
 
 
 app.get('/users/logout', (req, res) => {
