@@ -284,3 +284,74 @@ body {
   grid-row: 10/4;
   border: 1px solid #333;
 }
+/* Notice board styles */
+.unique-page-name {
+  background-image: url(../images/background2.jpg);
+  font-family: "Open Sans", sans-serif;
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.hr1 {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid black;
+  padding: 0;
+}
+
+.news-link {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  width: 10%;
+  padding: 5px;
+  margin-left: 30px;
+}
+h1 {
+  font-size: 200 px;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+.ad {
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 0;
+  text-transform: uppercase;
+  font-style: italic;
+  background-color: black;
+  color: white;
+  width: 85%;
+  margin: auto;
+}
+span {
+  color: teal;
+  font-family: "Roboto Slab", serif;
+  font-weight: 900;
+}
+.date {
+  float: left;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.edition {
+  float: right;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.hr2 {
+  margin-top: 40px;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid black;
+  padding: 0;
+}
