@@ -299,7 +299,7 @@
                   <option value="start">START</option>
                   <option value="in-process">IN-PROCESS</option>
                   <option value="completed">COMPLETED</option> 
-                  <option  id="edit-form-requeststatus" </option>
+                  <option  id="edit-form-requeststatus"></option>
                 </select>
   
                   </div>

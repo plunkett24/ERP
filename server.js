@@ -107,6 +107,53 @@ app.get('/users/sales2', (req, res) => {
 	//res.render('sales2.dust', { header: 'DUST - TEST OK' });
 });
 
+app.get('/users/shopfloor', (req, res) => {
+	//PG Connect
+	pool.connect(function (err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('SELECT * FROM customers', function (err, result) {
+			if (err) {
+				return console.error('error running query', err);
+			}
+			res.render('shopfloor.dust', { customers: result.rows });
+			done();
+		});
+	});
+
+	//res.render('sales2.dust', { header: 'DUST - TEST OK' });
+});
+
+app.get('/users/noticeboard', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('noticeboard.ejs');
+});
+
+
+
+app.get('/users/hr', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('hr.ejs');
+});
+
+app.get('/users/hr2', (req, res) => {
+	//PG Connect
+	pool.connect(function (err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('SELECT * FROM humanresources', function (err, result) {
+			if (err) {
+				return console.error('error running query', err);
+			}
+			res.render('hr2.dust', { humanresources: result.rows });
+			done();
+		});
+	});
+
+	//res.render('sales2.dust', { header: 'DUST - TEST OK' });
+});
 
 
 app.get('/users/logout', (req, res) => {
@@ -342,6 +389,168 @@ app.delete('/users/sales2/delete/:id', function (req, res) {
 		res.send(200);
 	});
 });
+//human resources
+app.post('/users/hr', async (req, res) => {
+	let {
+		firstname,
+		lastname,
+		country,
+		city,
+		province,
+		postalcode,
+		email,
+		age,
+		date,
+		gender,
+		request,
+		file,
+		salary,
+		phonenumber,
+		employee_position,
+		
+	} = req.body; //get info from our hr form send it to server
+
+	console.log({
+		firstname,
+		lastname, // log login details to console
+		country,
+		city,
+		province,
+		postalcode,
+		email,
+		age,
+		date,
+		gender,
+		request,
+		file,
+		salary,
+		phonenumber,
+		employee_position,
+		
+	});
+	let errors = []; // any errors will be pushed to this array
+
+	if (
+		!firstname ||
+		!lastname ||
+		!country ||
+		!city ||
+		!province ||
+		!postalcode ||
+		!email ||
+		!age ||
+		!date ||
+		!gender ||
+		!request||
+		!salary ||
+		!phonenumber ||
+		!employee_position
+	) {
+		// error validations for sales info
+		errors.push({ message: 'Please enter all fields' });
+	}
+
+	if (errors.length > 0) {
+		// if errors exist run the register file and show errors.
+		res.render('hr.ejs', { errors });
+	} else {
+		pool.query(
+			'SELECT * FROM humanresources WHERE email = $1', //check to see if employee already exists
+			[email], // in our database
+			(err, results) => {
+				if (err) {
+					throw err;
+				}
+
+				console.log(results.rows); //shows list of registered employees in database
+				if (results.rows.length > 0) {
+					errors.push({ message: 'employee already exists' });
+					res.render('hr', { errors });
+				} else {
+					pool.query(
+						`INSERT INTO humanresources (firstname, lastname, country, city, province, postalcode, email, age, date,
+						gender, request, file, salary, phonenumber, employee_position)
+					     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+						 RETURNING id`,
+						[
+							firstname,
+							lastname,
+							country,
+							city,
+							province,
+							postalcode,
+							email,
+							age,
+							date,
+							gender,
+							request,
+							file,
+							salary,
+							phonenumber,
+							employee_position,
+							
+						], // replace 1, 2, 3 with these values
+						(err, results) => {
+							if (err) {
+								throw err;
+							}
+							console.log(results.rows);
+							req.flash('success_msg', 'You are now registered.');
+							res.redirect('/users/hr');
+						}
+					);
+				}
+			}
+		);
+	}
+});
+
+app.post('/users/edit2', function (req, res) {
+	pool.connect(function (err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query(
+			'UPDATE humanresources SET firstname=$1, lastname=$2, country=$3, city=$4, province=$5, postalcode=$6, email=$7, age=$8, date=$9, gender=$10, request=$11, file=$12, salary=$13, phonenumber=$14, employee_position=$15 WHERE id=$16',
+			[
+				req.body.firstname,
+				req.body.lastname,
+				req.body.country,
+				req.body.city,
+				req.body.province,
+				req.body.postalcode,
+				req.body.email,
+				req.body.age,
+				req.body.date,
+				req.body.gender,
+				req.body.request,
+				req.body.file,
+				req.body.salary,
+				req.body.phonenumber,
+				req.body.employee_position,
+				req.body.id,
+			]
+		);
+
+		done();
+		res.redirect('/users/hr2');
+	});
+});
+app.delete('/users/hr2/delete/:id', function (req, res) {
+	//handle request to delete
+	pool.connect(function (err, client, done) {
+		if (err) {
+			return console.error('error fetching client from pool', err);
+		}
+		client.query('DELETE FROM humanresources WHERE id =$1', [req.params.id]);
+		done();
+		res.send(200);
+	});
+});
+
+
+
+
 
 function checkAuthenticated(req, res, next) {
 	//checks if user is authenticated or passport function

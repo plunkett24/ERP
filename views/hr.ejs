@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" 
+    />
+		<link rel="stylesheet" href="/css/styles.css" />   
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>hr</title>
+    
+    </head>
+	<body class="hrpage">
+
+    
+   
+
+       <div class="container">
+    
+       
+                  <div class="nav-wrapper">
+			                        	<div class="left-side">
+			                                		<div class="nav-link-wrapper">
+			                               			<a href="/users/dashboard">dashboard</a>
+					         </div>
+
+                             
+                   <div class="nav-link-wrapper">
+                    <a href="/users/hr">Create employee</a>
+                    </div>  
+                           
+                
+                
+                
+                
+                               <div class="nav-link-wrapper">
+						       <a href="/users/hr2">Update/ Delete employee</a>
+					            </div>  
+			
+
+				                  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+                </div>
+      
+      
+      </div>
+			
+            <form class=a action="/users/hr" method="post">
+                <div>
+                  <label for="firstname">First Name</label>
+                  <input type="text" name="firstname" id="firstname" placeholder="firstname" required>
+              </div>
+              <div>
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" id="lastname" placeholder="lastname" required>
+            </div>
+            <div>
+                <label for="country">Country</label>
+                <input type="text" name="country" id="country" placeholder="country" required>
+            </div>
+            <div>
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" placeholder="city" required>
+            </div>
+            <div>
+                <label for="province">Province</label>
+                <input type="text" name="province" id="province" placeholder="province" required>
+            </div>
+            <div>
+                <label for="postalcode">Postal Code</label>
+                <input type="text" name="postalcode" id="postalcode" placeholder="postalcode" required>
+            </div>
+            
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder= "email" required>
+              </div>
+              <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" min="1" max="200" step="1" placeholder="age" required>
+              </div>
+              <div>
+                <label for="date">Employment Date</label>
+                <input type="date" name="date" id="date" min="1900-06-10" placeholder="date" required>
+              </div>
+                          
+            
+            <!---  <div>
+                  <label for="male">Male</label>
+                  <input type="radio" name="gender" id="male" value="male">
+                </div>
+                <div>
+                  <label for="female">Female</label>
+                  <input type="radio" name="gender" id="female" value="female">
+                </div>
+                <div>
+                    <label for="non binary">Non-Binary</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                  </div> -->
+                <div>
+              <select name= "gender">
+                <option value="male">MALE</option>
+                <option value="female">FEMALE</option>
+                <option value="nonibinary">NON-BINARY</option> 
+              
+              </select>
+
+                </div>
+           
+              
+              <div>
+                <label for="request">Information</label>
+                <textarea id="request" name="request" placeholder=""></textarea  required>
+              </div>
+              
+              <div>
+                <label for="file">File</label>
+                <input id="file" type="file" name="file">
+              </div>
+              <div>
+                <div>
+                    <label for="salary">Salary per hr</label>
+                    <input type="number" name="salary" id="salary" min="0.00" max="200" step="1" placeholder="salary" required>
+                  </div>
+               
+               
+               
+                <label for="phonenumber">Phonenumber</label>
+                <input type="tel" name="phonenumber" id="phonenumber" placeholder="phonenumber" required>
+              </div>
+              <div>
+                <label for="employee_position">Employee Position</label>
+                <input type="text" name="employee_position" id="employee_position" placeholder="employee_position" required>
+            </div>
+             
+             
+              <button type="reset">Reset</button>
+              <button type="submit">Submit</button>
+            </form>
+                  
+                 
+                  
+         </div>         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        </body>
+	
+</html>
