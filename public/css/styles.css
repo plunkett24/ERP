@@ -48,6 +48,10 @@ body {
 .salespage2 {
   background-image: url(../images/background2.jpg);
 }
+/*accounts page*/
+.accountspage {
+  background-image: url(../images/background2.jpg);
+}
 
 /*hr page*/
 .hrpage {
@@ -355,3 +359,150 @@ span {
   border-top: 1px solid black;
   padding: 0;
 }
+.container-1 {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-areas:
+    "p-1 break image-1"
+    "p-1 break image-1"
+    "p-1 break image-1";
+}
+.image-1 {
+  grid-area: image-1;
+  width: 300px;
+  background-color: grey;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.break {
+  grid-area: break;
+  border-color: black;
+  height: 400px;
+}
+
+.p1 h4 {
+  text-transform: uppercase;
+  font-size: 20 px;
+}
+.container-2 {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-areas: "break-mid caption";
+}
+
+.break-mid {
+  grid-area: break-mid;
+  margin-left: 483px;
+  border-color: black;
+}
+
+.caption-2 {
+  margin-top: 10px;
+  margin-left: 525px;
+}
+
+.container-3 {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-areas:
+    "p-2 break-2 image-2 p-3"
+    "p-2 break-2 image-2 p-3"
+    "p-2 break-2 image-2 p-3";
+}
+
+.break-2 {
+  grid-area: break-2;
+  border-color: black;
+  height: 400px;
+  margin-left: 2px;
+  height: 500px;
+}
+.image-2 {
+  grid-area: image-2;
+  width: 300px;
+  background-color: grey;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+.p2 h4 {
+  text-transform: uppercase;
+  font-size: 20 px;
+  margin-top: 20 px;
+}
+.p3 h4 {
+  text-transform: uppercase;
+  font-size: 20px;
+  margin-top: 20 px;
+}
+.hr3 {
+  margin-top: 20px;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid black;
+  padding: 0;
+}
+
+.page-no {
+  background-color: black;
+  color: white;
+  text-align: center;
+  width: 5%;
+  padding: 3px;
+  margin-left: 1300px;
+}
+/* Management docs */
+.unique-page-name2 {
+  border: 0;
+  box-sizing: content-box;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: top;
+}
+*[contenteditable] {
+  border-radius: 0.25em;
+  min-width: 1em;
+  outline: 0;
+}
+
+*[contenteditable] {
+  cursor: pointer;
+}
+
+*[contenteditable]:hover,
+*[contenteditable]:focus,
+td:hover *[contenteditable],
+td:focus *[contenteditable],
+img.hover {
+  background: #def;
+  box-shadow: 0 0 1em 0.5em #def;
+}
+
+span[contenteditable] {
+  display: inline-block;
+}
+
+/* heading */
+
+.editheader {
+  font: bold 100% sans-serif;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+/* table */

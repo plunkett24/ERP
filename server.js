@@ -163,6 +163,39 @@ app.get('/users/logout', (req, res) => {
 	res.redirect('/users/login');
 });
 
+app.get('/users/management', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('management.ejs');
+});
+
+
+app.get('/users/purchaseorder', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('purchaseorder.ejs');
+});
+
+app.get('/users/accounts', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('accounts.ejs');
+});
+
+app.get('/users/expensetracker', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('expensetracker.ejs');
+});
+
+app.get('/users/profitandloss', checkNotAuthenticated, (req, res) => {
+	//setting up page and link to specific file.
+	res.render('proftandloss.ejs');
+});
+
+
+
+
+
+
+
+
 app.post('/users/register', async (req, res) => {
 	let { name, email, password, password2 } = req.body; //get info from our register form send it to server
 
