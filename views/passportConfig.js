@@ -1,17 +1,24 @@
 const LocalStrategy = require("passport-local").Strategy; //passport setup
-const { pool } = require("./dbConfig"); //need access to database
+const pool = require("./dbConfig"); //need access to database
 const bcrypt = require("bcrypt"); //need to compare hashed password with password being inputted.
 
 function initialize(passport) {
+	
 	const authenticateUser = (email, password, done) => {
+		
+		const qt = {
+			text: `SELECT * FROM users WHERE email = email`, //check database to see if user exists
+			
+		}
 		pool.query(
-			`SELECT * FROM users WHERE email =$1`, //check database to see if user exists
-			[email],
+			qt,
 			(err, results) => {
 				if (err) {
+				//	console.log(err);
+					
 					throw err;
 				}
-				console.log(results.row);
+			//	console.log(results.row);
 
 				if (results.rows.length > 0) {
 					//found a user in database

@@ -1,0 +1,398 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.12 (Debian 11.12-0+deb10u1)
+-- Dumped by pg_dump version 11.12 (Debian 11.12-0+deb10u1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: your_enum1; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.your_enum1 AS ENUM (
+    'male',
+    'female',
+    'non-binary'
+);
+
+
+ALTER TYPE public.your_enum1 OWNER TO postgres;
+
+--
+-- Name: your_enum2; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.your_enum2 AS ENUM (
+    'start',
+    'in-process',
+    'completed'
+);
+
+
+ALTER TYPE public.your_enum2 OWNER TO postgres;
+
+--
+-- Name: your_enum3; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.your_enum3 AS ENUM (
+    'ea',
+    'lbs'
+);
+
+
+ALTER TYPE public.your_enum3 OWNER TO postgres;
+
+--
+-- Name: your_enum4; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.your_enum4 AS ENUM (
+    'po',
+    'recieval'
+);
+
+
+ALTER TYPE public.your_enum4 OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.customers (
+    id bigint NOT NULL,
+    firstname character varying(200) NOT NULL,
+    lastname character varying(200) NOT NULL,
+    country character varying(200) NOT NULL,
+    city character varying(200) NOT NULL,
+    province character varying(200) NOT NULL,
+    postalcode character varying(200) NOT NULL,
+    email character varying(200) NOT NULL,
+    age numeric,
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    gender public.your_enum1,
+    request character varying(200) NOT NULL,
+    file bytea,
+    phone text,
+    url text,
+    requeststatus public.your_enum2
+);
+
+
+ALTER TABLE public.customers OWNER TO postgres;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.customers_id_seq OWNER TO postgres;
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
+
+
+--
+-- Name: humanresources; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.humanresources (
+    id bigint NOT NULL,
+    firstname character varying(200) NOT NULL,
+    lastname character varying(200) NOT NULL,
+    country character varying(200) NOT NULL,
+    city character varying(200) NOT NULL,
+    province character varying(200) NOT NULL,
+    postalcode character varying(200) NOT NULL,
+    email character varying(200) NOT NULL,
+    age numeric,
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    gender public.your_enum1,
+    request character varying(200) NOT NULL,
+    file bytea,
+    salary text,
+    phonenumber text,
+    employee_position text
+);
+
+
+ALTER TABLE public.humanresources OWNER TO postgres;
+
+--
+-- Name: humanresources_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.humanresources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.humanresources_id_seq OWNER TO postgres;
+
+--
+-- Name: humanresources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.humanresources_id_seq OWNED BY public.humanresources.id;
+
+
+--
+-- Name: purchaseorders; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.purchaseorders (
+    purchase_orderid bigint NOT NULL,
+    date timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    company_name character varying(200) NOT NULL,
+    company_address character varying(200) NOT NULL,
+    company_city character varying(200) NOT NULL,
+    company_province character varying(200) NOT NULL,
+    company_postalcode character varying(200) NOT NULL,
+    company_email character varying(200) NOT NULL,
+    company_phonenumber text,
+    supplier_name character varying(200) NOT NULL,
+    supplier_address character varying(200) NOT NULL,
+    supplier_city character varying(200) NOT NULL,
+    supplier_province character varying(200) NOT NULL,
+    supplier_postalcode character varying(200) NOT NULL,
+    supplier_email character varying(200) NOT NULL,
+    supplier_phonenumber text,
+    comments character varying(200) NOT NULL,
+    item_description character varying(200) NOT NULL,
+    specs public.your_enum3,
+    quantity numeric,
+    unitcost numeric,
+    price numeric,
+    total numeric,
+    subtotal numeric,
+    tax numeric,
+    grandtotal numeric,
+    status public.your_enum4
+);
+
+
+ALTER TABLE public.purchaseorders OWNER TO postgres;
+
+--
+-- Name: purchaseorders_purchase_orderid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.purchaseorders_purchase_orderid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.purchaseorders_purchase_orderid_seq OWNER TO postgres;
+
+--
+-- Name: purchaseorders_purchase_orderid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.purchaseorders_purchase_orderid_seq OWNED BY public.purchaseorders.purchase_orderid;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(200) NOT NULL,
+    email character varying(200) NOT NULL,
+    password character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: customers id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
+
+
+--
+-- Name: humanresources id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.humanresources ALTER COLUMN id SET DEFAULT nextval('public.humanresources_id_seq'::regclass);
+
+
+--
+-- Name: purchaseorders purchase_orderid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchaseorders ALTER COLUMN purchase_orderid SET DEFAULT nextval('public.purchaseorders_purchase_orderid_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.customers (id, firstname, lastname, country, city, province, postalcode, email, age, date, gender, request, file, phone, url, requeststatus) FROM stdin;
+1	Betsy	Plunkett	United States	West Palm Beach	Florida	33417	betsymaeplunkett@gmail.com	67	2021-03-04 00:00:00	male	Toyota Camry has been painted. Please bill	\\x	5617666727	http://www.charleyinc.com	start
+3	David	Nevins	Canada	Regina	Saskatchewan	S4N 2A5	davidnevins@yahoo.com	36	2021-04-09 00:00:00	male	Car  breaks changed to new	\\x	563789234	http://www.michelparts.com	completed
+\.
+
+
+--
+-- Data for Name: humanresources; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.humanresources (id, firstname, lastname, country, city, province, postalcode, email, age, date, gender, request, file, salary, phonenumber, employee_position) FROM stdin;
+2	Ronald	Reagan	United States	West Palm Beach	Florida	33417	ron@gmail.com	66	2021-03-27 00:00:00	male	great president	\\x	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: purchaseorders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.purchaseorders (purchase_orderid, date, company_name, company_address, company_city, company_province, company_postalcode, company_email, company_phonenumber, supplier_name, supplier_address, supplier_city, supplier_province, supplier_postalcode, supplier_email, supplier_phonenumber, comments, item_description, specs, quantity, unitcost, price, total, subtotal, tax, grandtotal, status) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, password) FROM stdin;
+1	Jamie Plunkett	jamieplunkett@rocketmail.com	$2b$10$VHX2sGCDZo9eJ0mL1phwwu/fkWMK5i7nAon93ddBGyXs/b50oyHUK
+2	Betsy Plunkett	betsy@qmail.com	$2b$10$Z3Wod9JopyeKxbgNMoJHpuigqrvKun/Kk5SE1cv7FNV6CmfGSEOj.
+3	John Dowe	johndowe@yahoo.com	$2b$10$K9AsfsUAZyxx.pFjtHcSvet9sPhY.UZeaT8SfH02.nlLKgWdDfssG
+4	Garfield Morris	morrisautorepairregina@yahoo.com	$2b$10$DA0Upn/qSUHnA6SgDnx3gOm20NFDKGpoU1Vapzbc.n//zhPCUzlBK
+\.
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.customers_id_seq', 3, true);
+
+
+--
+-- Name: humanresources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.humanresources_id_seq', 2, true);
+
+
+--
+-- Name: purchaseorders_purchase_orderid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.purchaseorders_purchase_orderid_seq', 1, false);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+
+
+--
+-- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: humanresources humanresources_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.humanresources
+    ADD CONSTRAINT humanresources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: purchaseorders purchaseorders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.purchaseorders
+    ADD CONSTRAINT purchaseorders_pkey PRIMARY KEY (purchase_orderid);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -1,6 +1,6 @@
 const express = require('express'); //Brings in the express library.
 const app = express(); //allows us to have access to express library functions
-const { pool } = require('./views/dbConfig'); //access to pg, created in dbConfig file
+const pool  = require('./views/dbConfig'); //access to pg, created in dbConfig file
 const bcrypt = require('bcrypt'); //allows us to hash passwords
 const morgan = require('morgan'); //logger which generates request logs library
 const session = require('express-session'); //store user session, track what users do on the program, stores info for a specific client
@@ -11,7 +11,11 @@ const path = require('path'); //find file paths using nodejs
 const bodyParser = require('body-parser'); // allows us to handle http and post requests in express.js
 const cons = require('consolidate'); // enables us to use template engines
 const dust = require('dustjs-helpers'); //usage of dust template engine
-
+const fs = require('fs');//reads from the file system
+const https = require('https');//https 
+//let privateKey = fs.readFileSync('/etc/letsencrypt/live/betsymaetech.com/privkey.pem', 'utf8');
+//let certificate = fs.readFileSync('/etc/letsencrpt/live/betsymaetech.com/cert.pem', 'utf8');
+//let creds = {key: privateKey, cert: certificate};
 //get other files on my machine...logos and images in other folders
 
 //Assign Dust Engine to .dust Files
@@ -417,7 +421,7 @@ app.delete('/users/sales2/delete/:id', function (req, res) {
 		if (err) {
 			return console.error('error fetching client from pool', err);
 		}
-		client.query('DELETE FROM customers WHERE id =$1', [req.params.id]);
+		client.query('DELETE FROM customers WHERE id = $1', [req.params.id]);
 		done();
 		res.send(200);
 	});
@@ -600,5 +604,8 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 app.listen(PORT, () => {
-	console.log('Server running on port ${PORT}'); //creating a server using express
+	console.log(`Server running on port ${PORT}`); //creating a server using express
 });
+
+//let httpsServer = https.createServer(creds, app);
+//httpsServer.listen(PORT, () => console.log (`Server running on port ${PORT}`) );
